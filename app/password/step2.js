@@ -10,7 +10,6 @@ define(['jquery', 'knockout', 'plugins/router'], function ($, ko, router) {
       }  
       
       this.save = function(){
-        console.log('code', self.pinCode());
         if(self.pinCode() == 3903){
           router.navigate('#step3/');
         } else { window.alert('Your pin code is not correct')}

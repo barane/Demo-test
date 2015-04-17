@@ -20,7 +20,6 @@ define(['jquery', 'knockout', 'plugins/router', 'api/wordList', './model'], func
 
 
     function init(){
-      console.log('for gh-branch')
       if(self.passPhrases()){self.passPhrases([])}
       var generatedWord = [],
           wordFromDict = [],
