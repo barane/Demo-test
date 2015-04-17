@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="alert alert-danger" role="alert" data-bind="visible: isSelected" style='width:40%;margin-left:30.00%'>Oops! Please generate and select a password...</div>
+   <div class="alert alert-info" role="alert"  data-bind='visible: showHelp'  style="width:300px; position: absolute; top:175px; right: 400px;text-align: justify">
+       In this step you are required to provide two paddings in the fields to the left, 
+       they can be anything you prefer from alphabet and characters to numbers, symbols 
+       and even space. You can have the paddings similar or different, then click 'Generate password' to get suggested passwords.
+       <br />
+       <hr />
+       Suggested passwords use the paddings you have provided, for example, if you enter '&' and '.' it might be: göra&snabt.går 
+   </div>
+  <div class="messageBox">
+     <div class="modal-header">
+        <b>Passphrase set up</b>
+        <button type="button" class="btn-s btn-info" data-bind='click:help' style="float:right">
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        </button>
+    </div>
+     <form role="form" data-bind="submit: refresh">
+       <div class="modal-body" style="padding-bottom:50px">
+       <div class="form-inline">
+         <label>
+         Padding 1
+        <input type="text" class="form-control" data-bind="value:symbol1" maxlength="1" style="width:50px" autofocus="true" required>
+        </label>
+         <label>
+         Padding 2
+         <input type="text" class="form-control" data-bind="value:symbol2" maxlength="1" style="width:50px" required>
+         </label>
+         <div class="pull-right">        
+          <button type="submit" class="btn btn-warning" aria-label="Left Align" data-bind="disable: noRemainingAttempts">
+           <!-- ko if: isFirstAttempt-->
+           Generate password
+         <!-- /ko -->
+          <!-- ko if: !isFirstAttempt() && !noRemainingAttempts() -->
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true" data-bind="text:remaningAttempts"></span>
+            <span>attempts remaining</span>
+          <!-- /ko -->
+          <!-- ko if:  noRemainingAttempts-->
+          No attempt remaining
+          <!-- /ko -->
+          </button>
+          </div>
+         </div>
+        <!-- ko foreach: passPhrases-->
+          <div class="radio">
+            <label>
+              <input type="radio" name="optionsRadios" data-bind="checkedValue:$data,checked: $root.selectedPass">
+              <span data-bind="text:$data" style="font-size:17px;"></span>
+            </label>
+          </div>
+        <!-- /ko-->
+         <div class="form-inline" data-bind="visible: selectedPass" style='padding-top: 10px'>
+         <label>
+         Your chosen password is:
+          <span data-bind="text:selectedPass" style="width:195px;padding-left: 6px; color:#31B404; font-size:20px"></span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-bind="click:back">Back</button>
+        <button type="submit" class="btn btn-primary" data-bind="click:confirm">Next</button>
+      </div>
+    </form>
+  </div>
+</div>
+

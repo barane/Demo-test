@@ -1,0 +1,208 @@
+﻿.loader {
+    margin: 6px 8px 4px 8px;
+    visibility: hidden;
+}
+
+.loader.active {
+    visibility: visible;
+}
+
+@media (max-width: 979px) {
+    .page-host {
+        top: 0;
+    }
+
+    .navbar-fixed-top {
+        margin-bottom: 0;
+    }
+}
+
+body {
+    background-color: #FFFFFF;
+    font-size: 15px;
+}
+
+.form-control {
+    font-size:17px;
+}
+
+.container {
+    text-align: center;
+    max-width: 1600px;
+    margin-bottom:50px
+}
+
+#border-right {
+    border-right:1px solid lightgray;
+}
+
+#input-center{
+ max-width:70px; 
+ margin:auto;
+}
+
+.total{
+    background-color:#F2F2F2;
+    padding:35px;
+}
+
+.under-total{
+    background-color:#A4A4A4;
+    padding:20px 30px;
+}
+
+.pre-total{
+ font-size:24px; 
+ color:gray;
+ padding-right: 8px;
+}
+
+.price-text {
+    font-size: 14px;
+}
+
+.total-text{
+    font-size:25px; 
+    font-weight:bold;
+}
+
+.table tr td{
+    vertical-align: middle !important;
+}
+
+.table tr th {
+    text-align: center !important;
+}
+
+
+.large-pic {
+    position:absolute; 
+    top:-140px; 
+    left:-200px;
+    width:200px;
+    height:200px; 
+    display:none
+} 
+
+td:hover .large-pic {
+ display:block;
+}
+
+.head-bar {
+    text-align: left;
+    max-width:700px;
+    background: rgb(181,189,200); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(181,189,200,1)), color-stop(36%,rgba(130,140,149,1)), color-stop(100%,rgba(40,52,59,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+}
+
+.head-bar h1 {
+    color: #FFF;
+    font-size: 15px;
+    padding: 5px 10px;
+}
+
+
+#progressbar {
+    overflow: hidden;
+    counter-reset: step;
+    margin-left:21.21%;
+
+}
+#progressbar li {
+    list-style-type: none;
+    color: black;
+    text-transform: uppercase;
+    font-size: 12px;
+    width: 23.23%;
+    float: left;
+    position: relative;
+    text-align: center;
+    margin:auto;
+}
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 40px;
+    line-height: 40px;
+    display: block;
+    font-size: 10px;
+    color: #333;
+    background: #F2F2F2;
+    border-radius: 100px;
+    margin: 0 auto 5px auto;
+    text-align:center;
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #F2F2F2;
+    position: absolute;
+    left: -50%;
+    top: 20px;
+    z-index: -1;
+}
+#progressbar li:first-child:after {
+    content: none; 
+}
+
+#progressbar li.active:before,  #progressbar li.active:after{
+    background: #428bca;
+    border-color: #357ebd;
+    color: #FFFFFF;
+}
+
+#progressbar li:before,  #progressbar li:after{
+   -moz-transition: .3s all;
+   -o-transition: .3s all;
+   -webkit-transition: .3s all;
+   transition: .3s all;
+}
+
+.messageBox{
+    max-width:480px; 
+    margin: 30px auto; 
+    text-align:left;
+}
+
+.alert-confirm{
+    max-width:400px; 
+    max-height:200; 
+    margin:auto;
+}
+
+@media (max-width: 992px) {
+
+  td:hover .large-pic {
+      display:none;
+      cursor: initial !important;
+  }
+
+  #border-right {
+      border-right:0 solid #6bc6e1;
+  }
+
+  #progressbar {
+    margin-left:-10%;
+  }
+
+  #progressbar li {
+    width: 33.33%;
+  }
+
+  #progressbar li:before{
+    width:30px;
+
+  }
+   
+  .over-left {
+    text-align: left;
+  }
+}

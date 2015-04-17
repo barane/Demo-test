@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="alert alert-info" role="alert"  data-bind='visible: showHelp'  style="width:300px; position: absolute; top:175px; right: 400px;text-align: justify">
+       Please enter the your pin code.  </div>
+  <div class="messageBox">
+     <div class="modal-header">
+     <b>Verification</b>
+      <button type="button" class="btn-s btn-info" data-bind='click:help' style="float:right">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    </button></div>
+     <form role="form" data-bind="submit: save">
+       <div class="modal-body">
+        <div class="form-group">
+          <label for="name">Please enter your pin code</label>
+          <input type="text" class="form-control" id="name" data-bind="value:pinCode" autofocus="true" placeholder="..." style='width:300px' required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" data-bind="click:cancel">Back</button>
+        <button type="submit" class="btn btn-primary">Next</button>
+      </div>
+    </form>
+  </div>
+</div>

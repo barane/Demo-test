@@ -1,0 +1,41 @@
+﻿<div>
+   <nav class="navbar navbar-inverse" role="navigation">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="#">Password Portal</a>
+      </div>
+         <ul class="nav navbar-nav navbar-right" style='margin-right:40px; margin-top:10px'> 
+         <li>
+            <select class="form-control">
+                 <option>Swedish</option>
+                 <option>Danish</option>
+                 <option>English</option>
+                 <option>Finish</option>
+                 <option>German</option>
+                 <option>Norvegian</option> 
+            </select>
+            </li>
+            <li>
+            <button type="button" class="btn btn-danger" data-bind="click:logOut" style="margin-left: 10px">Log Out</button>
+            </li>
+         </ul>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+         <ul class="nav navbar-nav" data-bind="foreach: router.navigationModel">
+            <li data-bind="css: { active: isActive }">
+               <a data-bind="attr: { href: hash }, text: title"></a>
+            </li>
+         </ul>
+      </div>
+   </nav>
+   <ul id="progressbar">
+      <li class="active">Step1</li>
+      <li>Step2</li>
+      <li>Step3</li>
+   </ul>    
+   <div class="container-fluid" data-bind="router: { transition:'entrance', cacheViews:true }"></div>
+</div>
