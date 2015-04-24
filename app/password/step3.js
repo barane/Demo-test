@@ -30,7 +30,7 @@ define(['jquery', 'knockout', 'plugins/router', 'api/wordList', './model'], func
             wordFromDict[i] = wordList[generatedWord[i]];         
         }
         if(self.symbol1() && self.symbol2()){             
-        phrase[j] = wordFromDict[0] + self.symbol1()  + wordFromDict[1] + self.symbol2() + wordFromDict[2];
+        phrase[j] = capitalizeFirstLetter(wordFromDict[0]) + self.symbol1()  + wordFromDict[1] + self.symbol2() + wordFromDict[2];
         self.passPhrases.push(phrase[j]);
         }    
       }
@@ -68,6 +68,10 @@ define(['jquery', 'knockout', 'plugins/router', 'api/wordList', './model'], func
 
     this.back = function () {
        router.navigate('#step2/');
+    }
+    
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     }
 }
   Ctor.prototype.activate = function () {
