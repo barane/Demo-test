@@ -17,13 +17,13 @@ define(['jquery', 'knockout', 'plugins/router', 'api/wordList', './model'], func
 
     var modifiedWordList = [];
     ko.utils.arrayForEach(wordList, function(item){
-        if(item.indexOf('ä') !== -1) {
+        while (item.indexOf('ä') !== -1) {
            item = replaceSwedishChar(item, "ä", "a");
         }
-        if(item.indexOf('å') !== -1) {
+        while (item.indexOf('å') !== -1) {
            item = replaceSwedishChar(item, "å", "a");
         }
-        if(item.indexOf('ö') !== -1) {
+        while (item.indexOf('ö') !== -1) {
             item = replaceSwedishChar(item, "ö", "o");
         }
         modifiedWordList.push(item);
@@ -85,9 +85,9 @@ define(['jquery', 'knockout', 'plugins/router', 'api/wordList', './model'], func
     }
 
     function replaceSwedishChar (word, swedChar, engChar){
-      var swedishCharIndex = word.indexOf(swedChar);
-      var lastIndex = word.length;
-      return word = word.slice(0, swedishCharIndex) +  engChar + word.slice(swedishCharIndex+1, lastIndex);  
+        var swedishCharIndex = word.indexOf(swedChar);
+        var lastIndex = word.length;
+        return word = word.slice(0, swedishCharIndex) +  engChar + word.slice(swedishCharIndex + 1, lastIndex);  
     }
 
     // function capitalizeFirstLetter(string) {
