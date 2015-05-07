@@ -14,7 +14,7 @@ define(['jquery', 'knockout', 'plugins/router', 'api/wordList', './model'], func
     self.counter= 3; 
     self.remaningAttempts = ko.observable();
     self.showHelp = ko.observable(false);
-
+console.log('testing');
     var modifiedWordList = [];
     ko.utils.arrayForEach(wordList, function(item){
         if(item.indexOf('ä') !== -1) {
