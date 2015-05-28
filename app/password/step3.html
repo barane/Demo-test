@@ -1,6 +1,7 @@
 <div class="container">
-  <div class="alert alert-danger" role="alert" data-bind="visible: isSelected" style='width:40%;margin-left:30.00%'>Oops! Please generate and select a password...</div>
-   <div class="alert alert-info" role="alert"  data-bind='visible: showHelp'  style="width:300px; position: absolute; top:175px; right: 70px;text-align: justify">
+  <div class="alert alert-danger" role="alert" data-bind="visible: noPassSelected" style='width:40%;margin-left:30.00%'>Oops! Please generate and select a password...</div>
+  <div class="alert alert-danger" role="alert" data-bind="visible: noPadding" style='width:40%;margin-left:30.00%'>Oops! Please fill out the paddings fields...</div>
+   <div class="alert alert-info" role="alert"  data-bind='visible: showHelp'  style="width:300px; position: absolute; top:175px; right: 400px;text-align: justify">
        In this step you are required to provide two paddings in the fields to the left, 
        they can be anything you prefer from alphabet and characters to numbers, symbols 
        and even space. You can have the paddings similar or different, then click 'Generate password' to get suggested passwords.
@@ -15,19 +16,19 @@
           <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
         </button>
     </div>
-     <form role="form" data-bind="submit: refresh">
+     <form role="form" data-bind="submit: confirm">
        <div class="modal-body" style="padding-bottom:50px">
-       <div class="form-inline">
+       <div class="form-inline" data-bind= "if: isBeforeChanging">
          <label>
          Padding 1
-        <input type="text" class="form-control" data-bind="value:symbol1" maxlength="1" style="width:50px" autofocus="true" required>
+        <input type="text" class="form-control autofocus" data-bind="value:padding1" maxlength="1" style="width:50px" required>
         </label>
          <label>
          Padding 2
-         <input type="text" class="form-control" data-bind="value:symbol2" maxlength="1" style="width:50px" required>
+         <input type="text" class="form-control" data-bind="value:padding2" maxlength="1" style="width:50px" required>
          </label>
          <div class="pull-right">        
-          <button type="submit" class="btn btn-warning" aria-label="Left Align" data-bind="disable: noRemainingAttempts">
+          <button type="button" class="btn btn-warning" aria-label="Left Align" data-bind="disable: noRemainingAttempts, click:refresh">
            <!-- ko if: isFirstAttempt-->
            Generate password
          <!-- /ko -->
@@ -40,25 +41,51 @@
           <!-- /ko -->
           </button>
           </div>
-         </div>
+         </div>   
         <!-- ko foreach: passPhrases-->
           <div class="radio">
             <label>
               <input type="radio" name="optionsRadios" data-bind="checkedValue:$data,checked: $root.selectedPass">
-              <span data-bind="text:$data" style="font-size:17px;"></span>
+              <span data-bind="text:$data.complete" style="font-size:17px;"></span>
             </label>
           </div>
         <!-- /ko-->
          <div class="form-inline" data-bind="visible: selectedPass" style='padding-top: 10px'>
-         <label>
-         Your chosen password is:
-          <span data-bind="text:selectedPass" style="width:195px;padding-left: 6px; color:#31B404; font-size:20px"></span>
-          </label>
+             <label data-bind= "if: isBeforeChanging">
+                Your chosen password is:
+                <span data-bind="with:selectedPass">
+                  <span data-bind="text:$data.complete" style="width:195px;padding-left: 6px; color:#31B404; font-size:20px"></span>
+                </span>
+             </label>
+             <label data-bind= "ifnot: isBeforeChanging">
+             </label>
+              
+              <div data-bind= "if: isBeforeChanging">
+              If you would like to change one of the words in your chosen password please click <button type="button" class="btn-s btn-info" data-bind="click: changeOneWord">here</button>
+              </div>
+              <div  data-bind= "ifnot: isBeforeChanging">
+                <h4>Please click on the word you want to change:</h4>  
+                <div data-bind="with:selectedPass">
+                <a href="#" data-bind="text:$data.word0, click: function() {$root.selectedWordToChange($data.word0); $root.passwordBeforeChange($data.word0)} " style="font-size:20px"></a>
+                 <a href="#" data-bind="text:$data.word1, click: function() {$root.selectedWordToChange($data.word1);$root.passwordBeforeChange($data.word1)}" style="font-size:20px"></a>
+                  <a href="#" data-bind="text:$data.word2, click: function() {$root.selectedWordToChange($data.word2);$root.passwordBeforeChange($data.word2)}" style="font-size:20px"></a>
+                </div>
+                <input class="form-control" data-bind="value:selectedWordToChange, disable:showFinalPass ">
+                <button type="button" class="btn-primary" data-bind="click:toChange, disable:showFinalPass ">Ok</button>
+                <!-- ko if:showFinalPass -->
+                <div style="margin-top:10px ">
+                <span>Now your password is: </span>
+                  <span data-bind="with:selectedPass">
+                    <span data-bind="text:$data.complete" style="width:195px;padding-left: 6px; color:#31B404; font-size:20px"></span>
+                </span>
+                </div>
+                <!-- /ko -->
+              </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-bind="click:back">Back</button>
-        <button type="submit" class="btn btn-primary" data-bind="click:confirm">Next</button>
+        <button type="submit" class="btn btn-primary">Next</button>
       </div>
     </form>
   </div>
