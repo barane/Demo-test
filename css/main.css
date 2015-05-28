@@ -1,4 +1,4 @@
-﻿.loader {
+.loader {
     margin: 6px 8px 4px 8px;
     visibility: hidden;
 }
@@ -167,7 +167,7 @@ td:hover .large-pic {
 }
 
 .messageBox{
-    max-width:480px; 
+    max-width:520px; 
     margin: 30px auto; 
     text-align:left;
 }
