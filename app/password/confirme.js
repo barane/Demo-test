@@ -8,6 +8,7 @@ define(['jquery', 'knockout', 'plugins/router','./step2', "./model"], function (
  		if(!self.enteredValue()){
  			window.alert("Please enter your password first!");
  		} else if(self.enteredValue() == self.passWord){
+ 		 self.enteredValue("");
  			window.alert("CORRECT!");
  		} else {
  			window.alert("WRONG, your password is: "+ self.passWord)
