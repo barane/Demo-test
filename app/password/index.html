@@ -4,7 +4,7 @@
     <p>This portal is for ÅF employees to set up a secure password. Please follow the instructions in each step. </p>
     <p>  To get help please click on the information button to the right corner of the box. </p>
   </div>
-    <div class="alert alert-info" role="alert"  data-bind='visible: showHelp' style="width:300px; position: absolute; top:300px; right: 70px;text-align: justify">
+    <div class="alert alert-info" role="alert"  data-bind='visible: showHelp' style="width:300px; position: absolute; top:300px; right: 400px;text-align: justify">
       To login you are required to provide your email address.
     </div>
     <div class="messageBox">
@@ -14,12 +14,16 @@
         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
       </button>
     </div>
-    <form role="form" data-bind="submit: sendSMS">
+    <form role="form" data-bind="submit: next">
      <div class="modal-body">
       <div class="form-group">
         <label for="name">Please enter your email address</label>
-        <input type="text" class="form-control" id="name"  data-bind="value:userName" autofocus="true" placeholder="..." style='width:300px' required>
+        <input type="text" class="form-control autofocus" id="name"  data-bind="value:userName" autofocus="true" placeholder="..." style='width:300px' required>
       </div>
+      <div class="form-group" style="margin-top:20px">
+          <label>Please choose the language for your password</label>
+          <select class="form-control" data-bind='options:["Swedish", "Danish", "English", "Finish", "German", "Norvegian"], value:selectedLang' style='width:150px'></select>      
+      </div> 
       </div>
        <div class="modal-footer">
        <button type="submit" class="btn btn-primary">Next</button>
