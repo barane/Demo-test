@@ -9,21 +9,17 @@ define(['jquery', 'knockout', 'plugins/router'], function ($, ko, router) {
        self.showHelp(!self.showHelp())
       }  
       
-      this.save = function(){
+      this.next = function(){
+        console.log('code', self.pinCode());
         if(self.pinCode() == 3903){
           router.navigate('#step3/');
         } else { window.alert('Your pin code is not correct')}
-       
       }
 
-      this.cancel = function () {
+      this.back = function () {
        router.navigate('#password/');
       }
   }
-
-  Ctor.prototype.compositionComplete = function () {
-        $('input[autofocus=true]').focus();
-    }
 
   Ctor.prototype.activate = function () {
       $("#progressbar li").eq(0).addClass('active');
