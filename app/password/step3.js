@@ -22,9 +22,13 @@ define(['jquery', 'knockout', 'plugins/router', 'api/swedWordList', 'api/engWord
 
     var modifiedWordList = [];
     var wordList = swedWordList;
+    
+    if(model.selectedLang == "Swedish"){
+      wordList = swedWordList;
+    }
     if(model.selectedLang == "Danish"){
       wordList = danishWordlist;
-    } else if(model.selectedLang == "English"){
+    } else{
       wordList = engWordlist
     } 
 
