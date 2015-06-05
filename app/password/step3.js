@@ -1,5 +1,5 @@
 
-define(['jquery', 'knockout', 'plugins/router', 'api/swedWordList', 'api/engWordlist', './model'], function ($, ko, router, swedWordList, engWordlist, model) {
+define(['jquery', 'knockout', 'plugins/router', 'api/swedWordList', 'api/engWordlist', 'api/danishWordlist', './model'], function ($, ko, router, swedWordList, engWordlist, danishWordlist, model) {
 
  var Ctor = function () {
     
@@ -21,11 +21,16 @@ define(['jquery', 'knockout', 'plugins/router', 'api/swedWordList', 'api/engWord
     self.showFinalPass = ko.observable(false);
 
     var modifiedWordList = [];
-    var wordList = model.selectedLang == "Swedish" ? swedWordList : engWordlist;
+    var wordList = swedWordList;
+    if(model.selectedLang == "Danish"){
+      wordList = danishWordlist;
+    } else if(model.selectedLang == "English"){
+      wordList = engWordlist
+    } 
 
-    if( model.selectedLang == "Swedish"){
+    if( model.selectedLang == "Swedish"){ 
       ko.utils.arrayForEach(wordList, function(item){
-          while (item.indexOf('ä') !== -1) {
+          while (item.indexOf('ä') !== -1) {    
              item = replaceSwedishChar(item, "ä", "a");
           }
           while (item.indexOf('å') !== -1) {
@@ -36,6 +41,19 @@ define(['jquery', 'knockout', 'plugins/router', 'api/swedWordList', 'api/engWord
           }
           modifiedWordList.push(item);
       });
+    } else if( model.selectedLang == "Danish"){
+        ko.utils.arrayForEach(wordList, function(item){
+            while (item.indexOf('å') !== -1) {
+               item = replaceSwedishChar(item, "å", "aa");
+            }
+            while (item.indexOf('ø') !== -1) {
+               item = replaceSwedishChar(item, "ø", "oe");
+            }
+            while (item.indexOf('æ') !== -1) {
+                item = replaceSwedishChar(item, "æ", "ae");
+            }
+            modifiedWordList.push(item);
+        });
     } else { modifiedWordList = wordList;}
 
     init();
@@ -82,10 +100,13 @@ define(['jquery', 'knockout', 'plugins/router', 'api/swedWordList', 'api/engWord
     this.confirm = function(){
       if(self.selectedPass()){
         model.passWord = self.selectedPass();
-        // $.post("",  {from:"" , to:"" , subject:"" , body:"" })
-        // .done(function(){
-        //   console.log("email sent")
-        // })
+          $.ajax({
+           type: "POST",
+           url: "api/password",
+           dataType: "json",
+           data: {"user": model.userName, "password" : self.selectedPass () },
+           success: function () { console.log("email sent")}
+         })
 
       // firebaseRef.push({
       //   userName: model.userName,
@@ -161,4 +182,3 @@ define(['jquery', 'knockout', 'plugins/router', 'api/swedWordList', 'api/engWord
   }
   return Ctor;
 })
-
